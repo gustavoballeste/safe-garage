@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(value = "Customers")
+@Api(tags={ "Assistance Api"})
 @RestController
 @RequestMapping("/assistance")
 public class AssistanceResource {
