@@ -2,4 +2,5 @@ rootProject.name = 'safegarage'
 include 'customer-service',
         'assistance-service',
         'scheduler-service',
-        'customer-bff'
+        'customer-bff',
+        'company-bff'

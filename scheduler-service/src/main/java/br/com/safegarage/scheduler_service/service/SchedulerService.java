@@ -1,5 +1,7 @@
 package br.com.safegarage.scheduler_service.service;
 
+import static br.com.safegarage.scheduler_service.domain.model.Scheduler.customerEntityToCustomer;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -7,6 +9,7 @@ import java.util.stream.Collectors;
 import br.com.safegarage.scheduler_service.domain.Status;
 import br.com.safegarage.scheduler_service.domain.model.Scheduler;
 import br.com.safegarage.scheduler_service.entity.SchedulerEntity;
+import br.com.safegarage.scheduler_service.event.publisher.OrderPendingPublisher;
 import br.com.safegarage.scheduler_service.repository.SchedulerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +20,15 @@ public class SchedulerService {
     @Autowired
     private SchedulerRepository schedulerRepository;
 
+    @Autowired
+    private OrderPendingPublisher orderPendingPublisher;
+
     public Scheduler create (final Scheduler scheduler) {
         scheduler.setStatus(Status.PENDING);
         final SchedulerEntity savedCustomer = schedulerRepository.save(scheduler.toSchedulerEntity());
-        return Scheduler.customerEntityToCustomer(savedCustomer);
+        final Scheduler savedScheduler = customerEntityToCustomer(savedCustomer);
+        orderPendingPublisher.publishSchedulerEvent(savedScheduler);
+        return savedScheduler;
     }
 
     public List<Scheduler> getAllByCustomer (final Long customerId) {

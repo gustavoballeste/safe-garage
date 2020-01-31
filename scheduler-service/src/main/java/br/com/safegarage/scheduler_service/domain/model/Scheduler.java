@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import br.com.safegarage.scheduler_service.domain.Status;
 import br.com.safegarage.scheduler_service.entity.SchedulerEntity;
+import br.com.safegarage.scheduler_service.event.OrderPendingEvent;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -52,7 +53,15 @@ public class Scheduler {
                 .build();
     }
 
-    public boolean isCanceled() {
-        return Status.CANCELED.equals(this.status);
+    public OrderPendingEvent toSchedulerEvent () {
+        return OrderPendingEvent.builder()
+                .customerId(this.customerId)
+                .companyId(this.companyId)
+                .assistanceName(this.assistanceName)
+                .assistanceDescription(this.assistanceDescription)
+                .dateTime(this.dateTime)
+                .status(this.status)
+                .build();
     }
+
 }
