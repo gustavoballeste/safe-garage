@@ -1,9 +1,9 @@
 # Bancos de dados que são utilizados pelos microserviços
 #
 # Customer Database - Postgres
-docker run -d --name customer-db \
+docker run -d --name scheduler-db \
 -e POSTGRES_PASSWORD=root \
--v $HOME/vol/db/postgres/customer/data:/var/db/postgres/customer/data \
+-v $HOME/vol/db/postgres/scheduler/data:/var/db/postgres/scheduler/data \
 -p 5432:5432 \
 postgres:12.0
 
