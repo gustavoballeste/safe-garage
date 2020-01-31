@@ -1,3 +1,5 @@
 rootProject.name = 'safegarage'
 include 'assistance-service'
+include 'schedule-service'
+include 'customer-service'
 
