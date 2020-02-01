@@ -1,8 +1,8 @@
 rootProject.name = 'safegarage'
 include 'configserver',
         'servicediscovery',
-        'customer-service',
         'assistance-service',
         'scheduler-service',
+        'customer-service',
         'customer-bff',
         'company-bff'

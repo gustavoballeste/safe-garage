@@ -1,4 +1,4 @@
-package com.e_shop_microservices.service_discovery;
+package com.safegarage.service_discovery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
