@@ -1,0 +1,56 @@
+version: '3'
+services:
+
+  discovery:
+    container_name: safegarage-discovery
+    build: ./servicediscovery
+    ports:
+      - "8761:8761"
+    network_mode: host
+
+  config:
+    container_name: safegarage-config
+    build: ./configserver
+    ports:
+      - "8888:8888"
+    network_mode: host
+
+  customer-service:
+    container_name: safegarage-customer-service
+    build: ./customer-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - discovery
+      - config
+    network_mode: host
+
+  assistance-service:
+    container_name: safegarage-assistance-service
+    build: ./assistance-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - discovery
+      - config
+    network_mode: host
+
+  scheduler-service:
+    container_name: safegarage-scheduler-service
+    build: ./scheduler-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - discovery
+      - config
+    network_mode: host
+
+  company-bff:
+    container_name: safegarage-company-bff
+    build: ./company-bff
+    ports:
+      - "8085:8085"
+    depends_on:
+      - discovery
+      - config
+    network_mode: host

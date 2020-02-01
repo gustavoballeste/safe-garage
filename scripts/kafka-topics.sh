@@ -16,7 +16,7 @@ echo '>>> CREATING TOPIC: queue.safegarage.scheduling.order.pending'
 $HOME/kafka_2.12-2.3.0/bin/kafka-topics.sh --create \
 --bootstrap-server localhost:9092 \
 --replication-factor 1 --partitions 1 \
---topic queue.safegarage.scheduling.order.pending&
+--topic queue.safegarage.scheduling.order.pending
 echo '>>> TOPIC CREATED: queue.safegarage.scheduling.order.pending!'
 
 # Order processed topic

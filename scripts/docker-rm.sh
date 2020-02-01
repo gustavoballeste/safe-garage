@@ -1,0 +1,1 @@
+docker stop $(docker ps -a --format {{.Names}} | grep safegarage) && docker rm $(docker ps -a --format {{.Names}} | grep safegarage)
