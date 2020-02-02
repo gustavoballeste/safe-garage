@@ -1,0 +1,15 @@
+version: '3'
+services:
+  kafka:
+    container_name: safegarage-kafka
+    image: spotify/kafka
+    network_mode: host
+    ports:
+      - 9092:9092
+      - 2181:2181
+    environment:
+      - "ADVERTISED_HOST=0.0.0.0"
+      - "ADVERTISED_PORT=9092"
+      - "TOPICS=queue.safegarage.scheduling.order.pending, queue.safegarage.scheduling.order.confirmed"
+    volumes:
+      - $HOME/var/vol/kafka/data:/var/vol/kafka
